@@ -19,7 +19,8 @@ const ChatRoom = () => {
   }, [userData]);
 
   const connect = () => {
-    let Sock = new SockJS('http://localhost:8080/ws');
+    console.log(import.meta.env.VITE_BASE_URL);
+    let Sock = new SockJS(import.meta.env.VITE_BASE_URL);
     stompClient = over(Sock);
     stompClient.connect({}, onConnected, onError);
   };
@@ -120,7 +121,7 @@ const ChatRoom = () => {
   const registerUser = () => {
     connect();
   };
-  
+
   return (
     <div className="container">
       {userData.connected ? (
